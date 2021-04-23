@@ -1,14 +1,61 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pkgfinal.project.shapes.of.war;
 
-/**
- *
- * @author 747420
- */
-public class fighter {
+
+import java.awt.*;
+
+
+public class Fighter extends MapSpawn
+{
+
+    public int rank;
+
+    public Fighter( int rank )
+    {
+        super( 0, 0, 10 );
+        this.rank = rank;
+    }
+
     
+     //@return if it should be hit
+     
+    public boolean getHit()
+    {
+        rank--;
+        return rank == 0;
+    }
+
+    public double getSpeed()
+    {
+        return rank;
+    }
+
+    public void draw( Graphics2D g )
+    {
+        Color color = Color.WHITE;
+        switch ( rank )
+        {
+            case 1:
+                color = Color.RED;
+                break;
+            case 2:
+                color = Color.BLUE;
+                break;
+        }
+        g.setColor( color );
+        g.fillOval(
+                getX() - getWidth(),
+                getY() - getWidth(),
+                getWidth() * 2,
+                getWidth() * 2 );
+        g.setColor( Color.WHITE );
+        g.drawOval(
+                getX() - getWidth(),
+                getY() - getWidth(),
+                getWidth() * 2,
+                getWidth() * 2 );
+    }
 }
+
+    
+
